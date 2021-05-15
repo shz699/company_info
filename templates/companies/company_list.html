@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}All Companies{% endblock title %}
+{% block style %}
+<style>
+    .btncus {
+        display: inline;
+        padding: 2px 6px;
+        background: #198754;
+        border-radius: 5px;
+        text-decoration: none;
+        color: white;
+    }
+
+    .btncus:hover {
+        background: #12643e;
+        color: white;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 100%;
+        transform: translateX(-50%);
+
+    }
+</style>
+{% endblock style %}
+{% block body %}
+
+<h1 class='display-3 mb-2'>List All Company</strong></h1>
+
+<hr>
+
+<div class="container mt-4">
+    {% if companies.exists %}
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Company Name
+                </th>
+                <th>
+                    Business Type
+                </th>
+                <th>
+                    Manafement Type
+                </th>
+                <th>
+                    Incorporation Date
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for company in companies %}
+            <td>
+                {{company.company_name}}
+            </td>
+            <td>
+                {{company.business_type}}
+            </td>
+            <td>
+                {{company.management_type}}
+            </td>
+            <td>
+                {{company.incorporation_date}}
+            </td>
+            <td>
+                <a href=" {% url 'companies:detail' company.id %} " class='btncus'>
+                    View Full Details
+                </a>
+            </td>
+        </tbody>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h1> No records</h1>
+    {% endif %}
+
+
+    <div class='mx-auto'>
+        <a href=" {% url 'companies:create' %} " class="btn btn-primary btn px-4">Create New Company</a>
+    </div>
+</div>
+{% endblock body %}

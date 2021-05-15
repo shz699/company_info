@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Create Companies{% endblock title %}
+{% block style %}
+<style>
+form {
+    z-index: 5;
+}
+input {
+    z-index: 5;
+
+}
+    .fix {
+        position: sticky;
+        bottom: 10%;
+        left: 0;
+        z-index: 1;
+    }
+    .link {
+        display: inline;
+        padding: 2px 6px;
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+    }
+    .link:hover {
+        color: blue;
+    }
+    div .link{
+    font-size: 1.2rem;
+    display: inline-block;
+    padding: 5px;
+}
+</style>
+{% endblock style %}
+
+{% block body %}
+<div class='container'>
+
+    {% comment %} STart############################################################################# {% endcomment %}
+
+    <div class="mt-3" style="text-align: right;">
+        <h1>Add New</h1>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+            Business
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Business</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id='business' method='post' action="bg/" style="text-align: left;">
+                            {% csrf_token %}
+                            {{ buss_form|crispy }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button class='btn btn-success' type='submit'>Submit</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Managegement
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Management</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id='management' method='post' action="mng/" style="text-align: left;">
+                            {% csrf_token %}
+                            {{ mang_form|crispy }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button class='btn btn-success' type='submit'>Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    {% comment %} STart############################################################################# {% endcomment %}
+
+    <hr>
+
+<div>
+<a class='link' href=" {% url 'companies:list' %} ">Go Back</a>
+</div>
+    <h1 class="display-4 my-4">Create New Company</h1>
+
+    <form method='post' class="mt-3">
+        {{ form|crispy }}
+        {% csrf_token %}
+        <button class='btn btn-success mt-3' type='submit'>Submit</button>
+    </form>
+
+
+
+
+    {% comment %} <form id='business' method='post' action="bg/">
+        {{ buss_form|crispy }}
+        {% csrf_token %}
+        <button class='btn btn-success mt-3' type='submit'>Submit</button>
+    </form> {% endcomment %}
+
+
+
+
+    {% comment %} <form id='management' method='post' action="mng/">
+        {% csrf_token %}
+        {{ mang_form|crispy }}
+        <button class='btn btn-success mt-3' type='submit'>Submit</button>
+    </form> {% endcomment %}
+
+
+</div>
+
+{% if companies.exists %}
+
+<div class='fix' style="width: 18rem;">
+    <div class="card" style="width: 18rem;">
+        <div class="card-header bg-dark text-white">
+            Existing Companies
+          </div>
+        <ul class="list-group list-group-flush">
+            {% for company in companies %}
+            <li class="list-group-item"> 
+                <a class="link" href=" {% url 'companies:detail' company.id %} ">             
+                   <i style="font-weight: bold;">{{ company }} </i> || Inc.: {{ company.incorporation_no }}
+                </a>
+             </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endif %}
+{% endblock body %}
+
+{% block scripts %}
+<script>
+
+</script>
+{% endblock scripts %}

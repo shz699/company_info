@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}{{object.company_name}}{% endblock title %}
+{% block style %}
+<style>
+.b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, .1);
+  border: solid rgba(0, 0, 0, .15);
+  border-width: 1px 0;
+  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
+
+@media (min-width: 992px) {
+  .rounded-lg-3 { border-radius: .3rem; }
+}
+div .link{
+    font-size: 1.2rem;
+    display: inline-block;
+    padding: 5px;
+}
+img {
+    height:100px;
+}
+</style>
+{% endblock style %}
+
+{% block body %}
+<div>
+<a class='link' href=" {% url 'companies:list' %} ">Go Back</a>
+</div>
+<h1 class='display-3 mb-2'>Company Overview</strong></h1>
+
+  <div class="b-example-divider"></div>
+
+
+ <div class="px-4 py-5 my-5 text-center">
+    {% comment %} <img class="d-block mx-auto mb-4" src="https://source.unsplash.com/400x400/?nature,water" alt="" width="72" height="57"> {% endcomment %}
+    <h1 class="display-5 fw-bold"> {{object.company_name}} </h1>
+
+    <div class="col-lg-6 mx-auto">
+
+      <p class="lead mb-2">
+      {{object.incorporation_no}}
+      </p>
+
+      <p class="lead mb-2">
+      {{object.city}} , {{ object.country}}
+      </p>
+
+      <p class="lead mb-2">
+      {{object.business_type}}
+      </p>
+      <p class="lead mb-2">
+      {{object.management_type}}
+      </p>
+      <p class="lead mb-2">
+      {{object.incorporation_date}}
+      </p>
+      <p class="lead mb-2">
+      {{object.registered_address}}
+      </p>
+
+     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+        <a href=" {% url 'companies:delete' object.id %} " class="btn btn-danger btn px-4 gap-3">Delete</a>
+        <a href=" {% url 'companies:update' object.id %} " class="btn btn-outline-primary btn px-4">Update</a>
+      </div> 
+    </div>
+  </div>
+
+  <div class="b-example-divider"></div>
+
+
+
+
+
+{% endblock body %}
