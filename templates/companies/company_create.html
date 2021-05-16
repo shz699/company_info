@@ -159,6 +159,10 @@ input {
 
 {% block scripts %}
 <script>
+let selet = document.querySelectorAll('.select')
 
+selet.forEach((i) => {
+ i.classList.add('form-select')
+})
 </script>
 {% endblock scripts %}
