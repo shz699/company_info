@@ -24,6 +24,11 @@
         transform: translateX(-50%);
 
     }
+    @media(max-width: 992px) {
+.tab {
+    overflow-x: scroll;
+}
+}
 </style>
 {% endblock style %}
 {% block body %}
@@ -32,7 +37,19 @@
 
 <hr>
 
-<div class="container mt-4">
+<div class="container col-12">
+    <div class="card col-12">
+        <div class="card-body">
+            <div class='text-center'>
+                <h1 class='display-6'>All Companies</h1>
+                <h3 class='text-info'> {{ companies_count }} </h3>
+            </div>
+        </div>
+    </div>
+
+
+<div class="mt-4">
+    <div class="tab">
     {% if companies.exists %}
     <table class="table table-dark table-hover">
         <thead>
@@ -44,7 +61,7 @@
                     Business Type
                 </th>
                 <th>
-                    Manafement Type
+                    Management Type
                 </th>
                 <th>
                     Incorporation Date
@@ -76,9 +93,13 @@
         </tbody>
         {% endfor %}
     </table>
+</div>
+
     {% else %}
     <h1> No records</h1>
     {% endif %}
+
+</div>
 
 
     <div class='mx-auto'>

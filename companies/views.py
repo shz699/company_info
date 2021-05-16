@@ -20,9 +20,11 @@ def landing(request):
     return render(request , 'landing.html' , context)
 
 def CompanyList(request):
-    queryset = Company.objects.all()      
+    queryset = Company.objects.all() 
+    queryset_count = queryset.count()
     context = {
-        'companies' : queryset
+        'companies' : queryset , 
+        'companies_count' : queryset_count
     }
     return render(request , 'companies/company_list.html' , context)
 
@@ -91,6 +93,7 @@ def mng(request):
 class CompanyDetailView(generic.DetailView):
     template_name = 'companies/company_detail.html'
     queryset = Company.objects.all()
+    
 
 class CompanyUpdateView(generic.UpdateView):
     template_name = 'companies/company_update.html'

@@ -27,7 +27,8 @@ class Country(models.Model):
         verbose_name_plural = 'Countries'    
 
 class City(models.Model):
-    country = models.ForeignKey('Country' ,blank=True , null=True , on_delete=models.SET_NULL)   
+    country = models.ForeignKey('Country' , on_delete=models.CASCADE)   
+    # country = models.ForeignKey('Country' ,blank=True , null=True , on_delete=models.SET_NULL)   
     name = models.CharField(max_length=50) 
 
     def __str__(self):
@@ -39,14 +40,18 @@ class City(models.Model):
 class Company(models.Model):
     company_name = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='company' , default='logo.png' , null=True)
-    business_type = models.ForeignKey('Business',blank=True , null=True  , on_delete=models.SET_NULL)
-    management_type = models.ForeignKey('management' ,blank=True , null=True , on_delete=models.SET_NULL)
+    # business_type = models.ForeignKey('Business',blank=True , null=True  , on_delete=models.SET_NULL)
+    business_type = models.ForeignKey('Business', on_delete=models.CASCADE)
+    # management_type = models.ForeignKey('management' ,blank=True , null=True , on_delete=models.SET_NULL)
+    management_type = models.ForeignKey('management', on_delete=models.CASCADE)
     incorporation_date = models.DateTimeField(default=now)
     # updated = models.DateTimeField(auto_now=True)
     incorporation_no = models.CharField(max_length=200)
     registered_address = models.TextField()
-    country = models.ForeignKey('Country' ,blank=True , null=True , on_delete=models.SET_NULL)
-    city = models.ForeignKey('City' ,blank=True , null=True , on_delete=models.SET_NULL)
+    country = models.ForeignKey('Country', on_delete=models.CASCADE)
+    # country = models.ForeignKey('Country' ,blank=True , null=True , on_delete=models.SET_NULL)
+    city = models.ForeignKey('City', on_delete=models.CASCADE)
+    # city = models.ForeignKey('City' ,blank=True , null=True , on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name_plural = 'Companies'

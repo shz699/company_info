@@ -29,6 +29,20 @@
   border-bottom: 1px solid grey;
 }
 
+.cont {
+height: 450px;
+transition: 0.3s ease;
+}
+.cont:hover {
+height: 500px;
+
+}
+
+.cont:hover .hover_img{
+  transform: translateY(-55px);
+
+
+}
 
 .hover_img {
   transition: 0.3s ease;
@@ -36,6 +50,26 @@
 .hover_img:hover {
   transform: translateY(-55px);
 }
+
+
+
+@media (max-width: 768px){
+  
+  .cont {
+height: 450px;
+transition: 0.3s ease;
+}
+.cont:hover {
+height: 450px;
+
+}
+
+.cont:hover .hover_img{
+  transform: translateY(0);
+
+}
+}
+  
 </style>
 {% endblock style %}
 
@@ -63,7 +97,7 @@
     </div>
     <div class="" style="max-height: 30vh;">
       <div class="container px-5">
-        <img src="https://source.unsplash.com/700x500/?code" class="hover_img img-fluid border rounded-3 shadow-lg mb-4" alt="" width="700" height="500" loading="lazy">
+        <img src="{% static 'images/bg_home.jpg' %}" class="hover_img img-fluid border rounded-3 shadow-lg mb-4" alt="" width="700" height="500" loading="lazy">
       </div>
     </div>
   </div>
