@@ -37,7 +37,6 @@ class CompanyCreateView(generic.CreateView):
 
     def form_valid(self, form):
         form = form.save(commit=False)
-        print(form) 
         form.save()
         return super(CompanyCreateView , self).form_valid(form)  
 
@@ -45,15 +44,16 @@ def CompanyCreate(request):
     form = CreateCompany ()
     buss_form = CreateBusiness ()
     mang_form = CreateManagement ()
+    all_company = Company.objects.all()
     if request.method == 'POST':
-        form = CreateCompany (request.POST or None)
-        if form is not None:
-            f = request.POST['company_name']
-            print(f)    
+        form = CreateCompany (request.POST , request.FILES)
+        if form.is_valid:
+            form.save()
     context = {
         'form' : form,
         'buss_form' : buss_form,
         'mang_form' : mang_form,
+        'companies' : all_company,
     }
     return render(request , 'companies/company_create.html' , context)
 

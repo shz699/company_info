@@ -7,6 +7,7 @@ class CreateCompany(forms.ModelForm):
         model = Company
         fields = (
             'company_name',
+            'logo',
             'business_type',
             'management_type',
             'incorporation_date',

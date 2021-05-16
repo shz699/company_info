@@ -19,7 +19,7 @@ div .link{
     padding: 5px;
 }
 img {
-    height:100px;
+    height:150px;
 }
 </style>
 {% endblock style %}
@@ -34,7 +34,9 @@ img {
 
 
  <div class="px-4 py-5 my-5 text-center">
-    {% comment %} <img class="d-block mx-auto mb-4" src="https://source.unsplash.com/400x400/?nature,water" alt="" width="72" height="57"> {% endcomment %}
+    <i>##########</i>
+    <img class="d-block mx-auto my-2" src=" {{object.logo.url}} " alt="logo">
+    <i>##########</i>
     <h1 class="display-5 fw-bold"> {{object.company_name}} </h1>
 
     <div class="col-lg-6 mx-auto">
@@ -43,21 +45,28 @@ img {
       {{object.incorporation_no}}
       </p>
 
+      <hr>
+
+      <h3>Address</h3>
+
+      <p class="lead mb-2">
+      {{object.registered_address}}
+      </p>
+
       <p class="lead mb-2">
       {{object.city}} , {{ object.country}}
       </p>
 
+      <hr>
+
       <p class="lead mb-2">
-      {{object.business_type}}
+      <strong>Business Type:</strong> {{object.business_type}}
       </p>
       <p class="lead mb-2">
-      {{object.management_type}}
+      <strong>Managegement Type:</strong>  {{object.management_type}}
       </p>
       <p class="lead mb-2">
       {{object.incorporation_date}}
-      </p>
-      <p class="lead mb-2">
-      {{object.registered_address}}
       </p>
 
      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">

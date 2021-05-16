@@ -19,6 +19,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from companies.views import landing
 
+admin.site.site_title = 'Company_Info'
+admin.site.site_header = 'Welcome To Company_Info Admin'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', landing , name='home'),

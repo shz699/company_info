@@ -1,0 +1,67 @@
+{% extends "admin/base.html" %}
+{% block extrastyle %}
+    <style>
+       body {
+           position: relative;
+           background: rgba(0, 0, 0, 0.842);
+           color: white;
+        }
+        body::before{
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background : url('/static/admin/bg.jpg') no-repeat center center/cover;
+            z-index: -2;
+
+       }
+        body::after{
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background : rgba(0, 0, 0, 0.842);
+            z-index: -1;
+       }
+       div.breadcrumbs {
+    background: rgb(82, 80, 80);
+    padding: 10px 40px;
+    border: none;
+    color: var(--breadcrumbs-fg);
+    text-align: left;
+}
+       #header {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background: black;
+    color: white;
+    overflow: hidden;
+       }
+       .module h2, .module caption, .inline-group h2 {
+    margin: 0;
+    padding: 8px;
+    font-weight: 400;
+    font-size: 13px;
+    text-align: left;
+    background: black;
+    color: white;
+}
+       h1 {
+    margin: 0 0 20px;
+    font-weight: 300;
+    font-size: 20px;
+    color: white;
+}
+       #branding h1, #branding h1 a:link, #branding h1 a:visited {
+        color: white;
+        }
+    </style>
+{% endblock %}
