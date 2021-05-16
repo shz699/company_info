@@ -2,15 +2,25 @@ from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from .models import *
-from .forms import CreateCompany , CreateBusiness ,CreateManagement
+from .forms import CreateCompany , CreateBusiness, EmailUser , CreateManagement
 from django.views import generic
 
 # Create your views here.
 def landing(request):
-    return render(request , 'landing.html')
+    queryset =  EmailUser ()
+    if request.method == 'POST':
+        # queryset = EmailUser(request.POST)
+        if queryset.is_valid:          
+            email = request.POST['email']
+            email_user = EmailFromUser(email=email)
+            email_user.save()
+    context = {
+        'form' : queryset
+    }
+    return render(request , 'landing.html' , context)
 
 def CompanyList(request):
-    queryset = Company.objects.all()
+    queryset = Company.objects.all()      
     context = {
         'companies' : queryset
     }

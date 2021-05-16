@@ -55,3 +55,11 @@ class Company(models.Model):
         return f"{self.company_name}" 
         # return f"{self.company_name} was created on {self.incorporation_date.strftime('%d/%m/%Y')}" 
 
+
+class EmailFromUser(models.Model):
+    email = models.EmailField(max_length=254)   
+    created = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.email} | created on {self.created}'
+

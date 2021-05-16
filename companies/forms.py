@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import models
-from .models import Company , Business , Management
+from .models import Company , Business , Management , EmailFromUser
 
 class CreateCompany(forms.ModelForm):
     class Meta:
@@ -28,6 +28,13 @@ class CreateManagement(forms.ModelForm):
         model = Management
         fields = (
             'mng_name',
+        )
+
+class EmailUser(forms.ModelForm):
+    class Meta:
+        model = EmailFromUser
+        fields = (
+            'email',
         )
 
         
