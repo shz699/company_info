@@ -6,6 +6,27 @@
            background: rgba(0, 0, 0, 0.842);
            color: white;
         }
+        #changelist .paginator {
+    color: var(--body-quiet-color);
+    border-bottom: 1px solid var(--hairline-color);
+    background: var(--body-bg);
+    overflow: hidden;
+    width: 94%;
+    
+}
+#toolbar {
+    padding: 8px 10px;
+    margin-bottom: 15px;
+    border-top: 1px solid var(--hairline-color);
+    border-bottom: 1px solid var(--hairline-color);
+    background: var(--darkened-bg);
+    color: var(--body-quiet-color);
+    width: 100%;
+}
+tr {
+   
+    width: 100%;
+}
         body::before{
             position: absolute;
             content: '';
@@ -65,3 +86,10 @@
         }
     </style>
 {% endblock %}
+
+{% block scripts %}
+<script>
+    let action = document.querySelector('.actions')
+    action.style.width = '94%'
+</script>
+{% endblock scripts %}
