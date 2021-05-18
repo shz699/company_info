@@ -82,8 +82,12 @@ height: 450px;
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">Quickly design and create responsive conpany records with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        {% if request.user.is_authenticated %}
         <a href=' {% url 'companies:list' %}' class="btn btn-success btn px-4 gap-3">List All Companies</a>
         <a href='{% url 'companies:create' %}' class="btn btn-outline-secondary btn px-4">Create New Company</a>
+        {% else %}
+        <a href=' {% url 'login' %}' class="btn btn-success btn px-4 gap-3">Login To Continue</a>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -150,7 +154,7 @@ height: 450px;
     <div class="py-5">
       <h1 class="display-5 fw-bold text-white">Do What Matters Your Company The Most</h1>
       <div class="col-lg-6 mx-auto">
-        <p class="fs-5 mb-4">Let all of your pain of storing and maintaing data on us. Data managerment Simplified</p>
+        <p class="fs-5 mb-4 capitalize" style="text-transform: capitalize;">Let all of your pain of storing and maintaing data on us. Data management Simplified</p>
         
       </div>
     </div>

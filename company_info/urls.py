@@ -18,6 +18,7 @@ from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
 from companies.views import landing
+from django.contrib.auth.views import LoginView , LogoutView
 
 admin.site.site_title = 'Company_Info'
 admin.site.site_header = 'Welcome To Company_Info Admin'
@@ -25,6 +26,8 @@ admin.site.site_header = 'Welcome To Company_Info Admin'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', landing , name='home'),
+    path('login/', LoginView.as_view() , name='login'),
+    path('logout/', LogoutView.as_view() , name='logout'),
     path('companies/', include('companies.urls' , namespace='companies')),
 ]
 

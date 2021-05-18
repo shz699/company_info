@@ -24,21 +24,23 @@
         transform: translateX(-50%);
 
     }
+
     @media(max-width: 992px) {
-.tab {
-    overflow-x: scroll;
-}
-}
+        .tab {
+            overflow-x: scroll;
+        }
+    }
 </style>
 {% endblock style %}
 {% block body %}
 
-<h1 class='display-3 mb-2'>List All Company</strong></h1>
+<h1 class='display-3 mb-2'>List All Companines</strong></h1>
 
 <hr>
 
 <div class="container col-12">
-    <div class="card col-12">
+<div class='row col-12' style="display: flex; justify-content: space-between;">
+    <div class="card col-6">
         <div class="card-body">
             <div class='text-center'>
                 <h1 class='display-6'>All Companies</h1>
@@ -46,54 +48,62 @@
             </div>
         </div>
     </div>
-
+    <div class="card col-6">
+        <div class="card-body">
+            <div class='text-center'>
+                <h1 class='display-6' style="text-transform: capitalize;">All Companies Created By <span style="color: #0dcaf0;"> {{request.user.username}} </span> </h1>
+                <h3 class='text-info'> {{ compaines_user_count }} </h3>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="mt-4">
     <div class="tab">
-    {% if companies.exists %}
-    <table class="table table-dark table-hover">
-        <thead>
-            <tr>
-                <th>
-                    Company Name
-                </th>
-                <th>
-                    Business Type
-                </th>
-                <th>
-                    Management Type
-                </th>
-                <th>
-                    Incorporation Date
-                </th>
-                <th>
+        {% if companies.exists %}
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Company Name
+                    </th>
+                    <th>
+                        Business Type
+                    </th>
+                    <th>
+                        Management Type
+                    </th>
+                    <th>
+                        Incorporation Date
+                    </th>
+                    <th>
 
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for company in companies %}
-            <td>
-                {{company.company_name}}
-            </td>
-            <td>
-                {{company.business_type}}
-            </td>
-            <td>
-                {{company.management_type}}
-            </td>
-            <td>
-                {{company.incorporation_date}}
-            </td>
-            <td>
-                <a href=" {% url 'companies:detail' company.id %} " class='btncus'>
-                    View Full Details
-                </a>
-            </td>
-        </tbody>
-        {% endfor %}
-    </table>
-</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for company in companies %}
+                <td>
+                    {{company.company_name}}
+                </td>
+                <td>
+                    {{company.business_type}}
+                </td>
+                <td>
+                    {{company.management_type}}
+                </td>
+                <td>
+                    {{company.incorporation_date}}
+                </td>
+                <td>
+                    <a href=" {% url 'companies:detail' company.id %} " class='btncus'>
+                        View Full Details
+                    </a>
+                </td>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
 
     {% else %}
     <h1> No records</h1>
@@ -102,8 +112,8 @@
 </div>
 
 
-    <div class='mx-auto'>
-        <a href=" {% url 'companies:create' %} " class="btn btn-primary btn px-4">Create New Company</a>
-    </div>
+<div class='mx-auto'>
+    <a href=" {% url 'companies:create' %} " class="btn btn-primary btn px-4">Create New Company</a>
+</div>
 </div>
 {% endblock body %}

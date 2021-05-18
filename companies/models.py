@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Business(models.Model):
@@ -52,6 +53,7 @@ class Company(models.Model):
     # country = models.ForeignKey('Country' ,blank=True , null=True , on_delete=models.SET_NULL)
     city = models.ForeignKey('City', on_delete=models.CASCADE)
     # city = models.ForeignKey('City' ,blank=True , null=True , on_delete=models.SET_NULL)
+    user = models.ForeignKey(User , on_delete=models.SET_NULL , null=True , blank=True)
 
     class Meta:
         verbose_name_plural = 'Companies'

@@ -18,7 +18,7 @@ div .link{
     display: inline-block;
     padding: 5px;
 }
-img {
+.img {
     height:150px;
 }
 </style>
@@ -35,7 +35,7 @@ img {
 
  <div class="px-4 py-5 my-5 text-center">
     <i>##########</i>
-    <img class="d-block mx-auto my-2" src=" {{object.logo.url}} " alt="logo">
+    <img class=" img d-block mx-auto my-2" src=" {{object.logo.url}} " alt="logo">
     <i>##########</i>
     <h1 class="display-5 fw-bold"> {{object.company_name}} </h1>
 
@@ -68,6 +68,11 @@ img {
       <p class="lead mb-2">
       {{object.incorporation_date}}
       </p>
+      {% if object.user is not null %}
+      <p class="lead mb-2">
+      Created By : <span style="color: #0dcaf0; text-transform: capitalize;"> {{object.user.username}} </span>
+      </p>
+      {% endif %}
 
      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
         <a href=" {% url 'companies:delete' object.id %} " class="btn btn-danger btn px-4 gap-3">Delete</a>

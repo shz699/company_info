@@ -4,6 +4,8 @@ from django.urls import reverse
 from .models import *
 from .forms import CreateCompany , CreateBusiness, EmailUser , CreateManagement
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def landing(request):
@@ -19,17 +21,21 @@ def landing(request):
     }
     return render(request , 'landing.html' , context)
 
+@login_required
 def CompanyList(request):
     queryset = Company.objects.all() 
     queryset_count = queryset.count()
+    user = request.user
+    queryset_user_count = queryset.filter(user=user).count()
     context = {
         'companies' : queryset , 
-        'companies_count' : queryset_count
+        'companies_count' : queryset_count ,
+        'compaines_user_count' : queryset_user_count,
     }
     return render(request , 'companies/company_list.html' , context)
 
 
-class CompanyCreateView(generic.CreateView):
+class CompanyCreateView(LoginRequiredMixin ,generic.CreateView):
     template_name = 'companies/company_create.html'
     form_class = CreateCompany
     def get_context_data(self, **kwargs):
@@ -49,6 +55,7 @@ class CompanyCreateView(generic.CreateView):
 
     def form_valid(self, form):
         form = form.save(commit=False)
+        form.user = self.request.user
         form.save()
         return super(CompanyCreateView , self).form_valid(form)  
 
@@ -90,12 +97,12 @@ def mng(request):
         return redirect('/companies/create/')
 
 
-class CompanyDetailView(generic.DetailView):
+class CompanyDetailView(LoginRequiredMixin ,generic.DetailView):
     template_name = 'companies/company_detail.html'
     queryset = Company.objects.all()
     
 
-class CompanyUpdateView(generic.UpdateView):
+class CompanyUpdateView(LoginRequiredMixin , generic.UpdateView):
     template_name = 'companies/company_update.html'
     form_class = CreateCompany
     queryset = Company.objects.all()
@@ -103,7 +110,7 @@ class CompanyUpdateView(generic.UpdateView):
     def get_success_url(self):
         return reverse('companies:list')
 
-class CompanyDeleteView(generic.DeleteView):
+class CompanyDeleteView(LoginRequiredMixin , generic.DeleteView):
     template_name = 'companies/company_delete.html'
     queryset = Company.objects.all()
 
